@@ -101,12 +101,12 @@ const updateStudent = (id, name) => {
   const upStudent = students.find((el) => {
     return el.id === id;
   });
-  console.log(upStudent);
   if (upStudent) {
     const index = students.indexOf(upStudent);
     upStudent.name = name;
     students.splice(index, 1, upStudent);
     saveStudnet(students);
+    console.log("Student Updated");
   } else {
     console.log("Student not found to update");
   }
