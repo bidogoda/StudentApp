@@ -26,20 +26,29 @@ const addStudent = (student) => {
   if (!dubStudent) {
     if (student.grade.length == 3) {
       let total = 0;
+      let err = 0;
       student.grade.forEach((element) => {
-        total += element;
+        if (!isNaN(element)) {
+          total += element;
+        } else {
+          err += 1;
+        }
       });
-      students.push({
-        id: student.id,
-        name: student.name,
-        grade: student.grade,
-        Comment: student.Comment,
-        total, // total:total
-      });
-      saveStudnet(students);
-      console.log("Add Successfully");
+      if (err == 0) {
+        students.push({
+          id: student.id,
+          name: student.name,
+          grade: student.grade,
+          Comment: student.Comment,
+          total, // total:total
+        });
+        saveStudnet(students);
+        console.log("Add Successfully");
+      } else {
+        console.log("Error enter numbers");
+      }
     } else {
-      console.log("Error Please add 3 degrees");
+      console.log("Error Please add only 3 degrees");
     }
   } else {
     console.log("Duplicate Student");
